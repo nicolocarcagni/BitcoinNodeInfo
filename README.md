@@ -2,14 +2,14 @@
 
 This is a simple Python script that monitors the status of a Bitcoin node and provides information about its blockchain synchronization. The script can be integrated with a Telegram bot to allow users to quickly check the status of their node using a mobile device.
 
-## Features
+### Features
 Check the status of a Bitcoin node (online/offline).
 Display the number of headers and blocks in the Bitcoin blockchain.
 Display the synchronization status of the Bitcoin blockchain.
 Display the disk usage of the node.
 Display the system uptime of the node.
 
-## Prerequisites
+### Prerequisites
 * Python 3.6 or later.
 * A running Bitcoin node.
 * The bitcoin-cli tool installed and available in the system's PATH.
@@ -19,7 +19,7 @@ Display the system uptime of the node.
 pip install -r requirements.txt
 ```
 
-## Configuration
+### Configuration
 To use the script, you need to create a Telegram bot in [BotFather](https://t.me/BotFather) and obtain an access token.
 
 ```python
@@ -33,7 +33,7 @@ To start the script, simply run the following command:
 python bot.py
 ```
 
-## Commands
+### Commands
 The bot recognizes the following commands:
 
 ``` /start ``` Displays the status of the Bitcoin node and blockchain synchronization.
@@ -45,6 +45,20 @@ The bot recognizes the following commands:
 ``` /disk ``` Displays the disk usage of the node.
 
 ``` /ping ``` Pings the script and receives a response.
+
+### Optional: Add commands list in BotFather
+
+![IMG_2732984AFD99-1](https://user-images.githubusercontent.com/64737169/233854452-8612428d-4f8c-4d08-abe8-72739c568fb2.jpeg)
+
+If you want a list of command like this 👆, use `/setcommands` in Bot Father and send the following list:
+
+
+```
+start - ▶️ Start the bot
+sync - 🔄 Sync status
+uptime - ⏰ Node uptime
+disk - 💾 Disk usage
+```
 
 ## License
 This script is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

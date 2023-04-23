@@ -10,17 +10,21 @@ Display the disk usage of the node.
 Display the system uptime of the node.
 
 ## Prerequisites
-Python 3.6 or later.
-A running Bitcoin node.
-The bitcoin-cli tool installed and available in the system's PATH.
-The pytz and telepot Python packages installed.
-Configuration
-To use the script, you need to create a Telegram bot and obtain an access token. You can follow these instructions to create a new bot and obtain an access token.
+* Python 3.6 or later.
+* A running Bitcoin node.
+* The bitcoin-cli tool installed and available in the system's PATH.
+* Python modules in ```requirements.txt``` 
 
-Once you have obtained an access token, replace the TOKEN variable in the script with your own access token:
+```bash
+pip install -r requirements.txt
+```
+
+## Configuration
+To use the script, you need to create a Telegram bot in [BotFather](https://t.me/BotFather) and obtain an access token.
 
 ```python
 TOKEN = 'your_bot_token_here'
+USERID = YOURUSERID
 ```
 ## Usage
 To start the script, simply run the following command:

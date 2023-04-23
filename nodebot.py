@@ -60,7 +60,7 @@ def handle_command(msg, bot):
                 headers, blocks, synced_time = get_blockchain_info()
 
                 # Welcome message using markdown
-                message = "Welcome, here is your ₿ node!\n\n🟢 Your node is *{0}*.\n\n🔗 Successfully synced until the block *{1}* / *{2}*.\n\n⏰ Last sync on {3}.".format(node_status, blocks, headers, synced_time.strftime("%d-%m-%Y %H:%M:%S"))
+                message = "Welcome, here is your ₿ node!\n\n🟢 Your node is *{0}*.\n\n🔗 Successfully synced until the block *{1}* / *{2}*.\n\n📅 Last block time {3}.".format(node_status, blocks, headers, synced_time.strftime("%d-%m-%Y %H:%M:%S"))
 
             # Invia il messaggio al bot Telegram
             bot.sendMessage(chat_id, message, parse_mode="Markdown")

@@ -33,9 +33,13 @@ python bot.py
 The bot recognizes the following commands:
 
 ``` /start ``` Displays the status of the Bitcoin node and blockchain synchronization.
+
 ``` /sync ``` Displays the synchronization status of the Bitcoin blockchain.
+
 ``` /uptime ``` Displays the system uptime of the node.
+
 ``` /disk ``` Displays the disk usage of the node.
+
 ``` /ping ``` Pings the script and receives a response.
 
 ## License

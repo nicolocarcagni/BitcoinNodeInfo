@@ -26,11 +26,12 @@ def get_blockchain_info():
     headers = blockchain_info['headers']
     blocks = blockchain_info['blocks']
     mediantime = blockchain_info['mediantime']
+    progress = blockchain_info['verificationprogress']
 
     # Timestamp UNIX to human readable date.
     synced_time = datetime.fromtimestamp(mediantime, pytz.timezone('Europe/Rome')) # Timezone
 
-    return headers, blocks, synced_time
+    return headers, blocks, synced_time, progress
 
 def disk(): # Disk usage from df
     command = "df -h /dev/sdb"
@@ -48,28 +49,25 @@ def handle_command(msg, bot):
         bot.sendMessage(chat_id, f"⚠️*You can't use this bot*, make sure your UserID match the one declared in the source code.", parse_mode="Markdown")
         print(f"Access denied to {user_id}")
     else:
-        if command == '/start':
+        if command == '/status':
             
             # Check node status
             node_status = check_node_status()
 
             if node_status == "offline":
-                message = "*Welcome, here is your ₿ node!*\n\n🔴 Your node is *offline*.\n"
+                message = "*Here is your ₿itcoin node!*\n\n🔴 Your node is *offline*.\n"
             else:
                 # Get blockchain syncing status
-                headers, blocks, synced_time = get_blockchain_info()
+                headers, blocks, synced_time, progress = get_blockchain_info()
 
                 # Welcome message using markdown
-                message = "*Welcome, here is your ₿ node!*\n\n🟢 Your node is *{0}*.\n\n🔗 Successfully synced until the block *{1}* / *{2}*.\n\n📅 Last Block Time: *{3}*.".format(node_status, blocks, headers, synced_time.strftime("%d-%m-%Y %H:%M:%S"))
+                message = "*Here is your ₿itcoin node!*\n\n🟢 Your node is *{0}*.\n\n🔗 Successfully synced until the block *{1}* / *{2}*.\n\n📅 Last Block Time: *{3}*.\n\n🔄 Sync Status: *{4:.2%}*".format(node_status, blocks, headers, synced_time.strftime("%d-%m-%Y %H:%M:%S"), progress)
 
             # Invia il messaggio al bot Telegram
             bot.sendMessage(chat_id, message, parse_mode="Markdown")
 
-        elif command == '/sync':
-            output = subprocess.check_output(['bitcoin-cli', 'getblockchaininfo']).decode('utf-8')
-            sync_info = json.loads(output)
-            progress = sync_info['verificationprogress']
-            message = f"🔄 *Sync Status:* {progress:.2%}\n"
+        elif command == '/start':
+            message = f"📍 *Welcome, use /status to check your node*"
             bot.sendMessage(chat_id, message, parse_mode='Markdown')
 
         elif command == '/uptime':

@@ -48,7 +48,7 @@ The bot recognizes the following commands:
 
 ### Optional: Add commands list in BotFather
 
-![IMG_EE7FDAF6F4E5-1](https://user-images.githubusercontent.com/64737169/234252153-a1505bcb-eebc-4a90-94f7-22aeef43074d.jpeg)
+![IMG_EE7FDAF6F4E5-1](https://user-images.githubusercontent.com/64737169/234252279-75c5066a-9e15-41d7-9ef4-c35bb9cdde89.jpeg)
 
 If you want a list of command like this 👆, use `/setcommands` in Bot Father and send the following list:
 

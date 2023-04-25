@@ -55,7 +55,7 @@ If you want a list of command like this 👆, use `/setcommands` in Bot Father a
 
 ```
 start - ▶️ Start the bot
-sync - 🔄 Sync status
+status - 🔄 Sync status
 uptime - ⏰ Node uptime
 disk - 💾 Disk usage
 ```

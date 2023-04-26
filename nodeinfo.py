@@ -1,11 +1,12 @@
 from datetime import datetime
 import subprocess
+import requests
 import telepot
 import json
 import pytz
 
-TOKEN = '' # Insert your token here
-USERID = 0000 # Insert your UserID here
+TOKEN = '6119835218:AAHMKgxQhjDcaN0Jyf0lj0l99wd-a0b7AxM' # Insert your token here
+USERID = 736164023 # Insert your UserID here
 
 def check_node_status():
     try:
@@ -22,7 +23,7 @@ def get_blockchain_info():
     # JSON parsing
     blockchain_info = json.loads(output)
 
-    # Get value of 'headers', 'blocks' anf 'mediantime' from JSON
+    # Get value of 'headers', 'blocks', 'mediantime' and 'verificationprogress' from JSON
     headers = blockchain_info['headers']
     blocks = blockchain_info['blocks']
     mediantime = blockchain_info['mediantime']
@@ -40,6 +41,14 @@ def disk(): # Disk usage from df
     output = output.split("\n")[1]  # get useful infos
     output = output.replace("  ", " ")  # replace space
     return output
+
+def get_btc_price():
+    response = requests.get('https://api.binance.com/api/v3/ticker/price', params={'symbol': 'BTCUSDT'}) # GET request to Binance for BTC value in USD
+    if response.status_code == 200:
+        price = float(response.json()['price'])
+        return price
+    else:
+        return None
 
 def handle_command(msg, bot):
     chat_id = msg['chat']['id']
@@ -79,6 +88,14 @@ def handle_command(msg, bot):
             output = disk()
             message = f"💾 *Disk:* {output}\n                                  Size|Used|Avail|Use%|Mounted on"
             bot.sendMessage(chat_id, message, parse_mode='Markdown')
+        
+        elif command == '/price':
+            price = get_btc_price()
+            if price is not None:
+                message = f"💰 BTC/USD price on Binance: *{price:.2f}$*."
+            else:
+                message = f"⚠️ *An error occurred!*"
+            bot.sendMessage(chat_id, message, parse_mode="Markdown")
 
         elif command == '/ping':
             message = "🏓 *PONG!*"

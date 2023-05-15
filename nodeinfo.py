@@ -5,8 +5,8 @@ import telepot
 import json
 import pytz
 
-TOKEN = '6119835218:AAHMKgxQhjDcaN0Jyf0lj0l99wd-a0b7AxM' # Insert your token here
-USERID = 736164023 # Insert your UserID here
+TOKEN = '' # Insert your token here
+USERID = 0000 # Insert your UserID here
 
 def check_node_status():
     try:
